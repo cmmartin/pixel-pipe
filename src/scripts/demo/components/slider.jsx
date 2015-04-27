@@ -2,12 +2,8 @@ import React from 'react'
 
 class Slider extends React.Component {
 
-	componentDidMount() {
-		this.DOM = this.refs.slider.getDOMNode()
-	}
-
-	onChange() {
-		this.props.options.value = +this.DOM.value
+	onChange(e) {
+		this.props.options.value = +e.target.value
 		this.props.onChange(this.props.options)
 	}
 
