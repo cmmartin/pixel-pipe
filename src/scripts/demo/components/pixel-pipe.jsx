@@ -56,11 +56,11 @@ export default class PixelPipe extends React.Component {
 	}
 
   	render() {
-  		if (this.original && this.props.activeFilters.length) this.run(this.props.activeFilters)
+  		if (this.original && this.props.filters) this.run(this.props.activeFilters)
     	return <canvas ref="canvas" 
-	    			onMouseDown={this.onMouseDown.bind(this)} 
-	    			onDrop={this.onDrop.bind(this)} 
-	    			onDragOver={this.allowDrop.bind(this)} >
+    			onMouseDown={this.onMouseDown.bind(this)} 
+    			onDrop={this.onDrop.bind(this)} 
+    			onDragOver={this.allowDrop.bind(this)} >
     			</canvas>
   	}
 }
