@@ -13,85 +13,11 @@ import {
 	sepia,
 	invert, 
 	convolute,
-	opacity
+	opacity,
+	uiControls
 } from './../filters'
 
-const imageUrl = "images/charlie.png"
-
-let filters = [
-	{
-		name: 'Brightness',
-		transform: brightness,
-		options: {
-			value: 100,
-			min: 0,
-			max: 255
-		},
-		ui: 'Slider'
-	},
-	{
-		name: 'Threshold',
-		transform: threshold,
-		options: {
-			value: 150,
-			min: 0,
-			max: 255
-		},
-		ui: 'Slider'
-	},
-	{
-		name: 'Greyscale',
-		transform: greyscale,
-		options: {}
-	},
-	{
-		name: 'Invert',
-		transform: invert,
-		options: {}
-	},
-	{
-		name: 'Sharpen',
-		transform: convolute,
-		options: {
-			weights: [  
-				0,  -1,   0,
-			   -1,   5,  -1,
-				0,  -1,   0 
-			],
-			opaque: 1
-		},
-		ui: 'Matrix'
-	},
-	{
-		name: 'Blur',
-		transform: convolute,
-		options: {
-			weights: [  
-				1/9,  1/9,  1/9,
-				1/9,  1/9,  1/9,
-				1/9,  1/9,  1/9 
-			],
-			opaque: 1
-		},
-		ui: 'Matrix'
-	},
-	{
-		name: 'Sepia',
-		transform: sepia,
-		options: {}
-	},
-	{
-		name: 'Opacity',
-		transform: opacity,
-		options: {
-			value: 0.5,
-			min: 0,
-			max: 1,
-			step: 0.01
-		},
-		ui: 'Slider'
-	}
-]
+const imageUrl = "images/tiger-jaw.jpg"
 
 let triangulatorOptions = {
 	pointRadius: 5,
@@ -107,7 +33,7 @@ class PixelPipeDemo extends React.Component {
 		this.state = {
 			points: new Set(), // points should be unique
 			activeFilters: [],
-			filters: filters,
+			filters: uiControls,
 			mesh: triangulatorOptions
 		}
 	}
@@ -134,14 +60,14 @@ class PixelPipeDemo extends React.Component {
 
 	onCanvasMouseDown(e) {
 		let canvasParent = this.refs.canvasWrap.getDOMNode()
-		let point = [e.pageX - canvasParent.offsetLeft, e.pageY + canvasParent.offsetTop].map(coordinate => coordinate - 10)
+		let point = [e.pageX - canvasParent.offsetLeft, e.pageY + canvasParent.offsetTop].map(coordinate => coordinate)
 		if (e.shiftKey) this.state.points.forEach(this.removePointIfClicked.bind(this, point))
 		else this.state.points.add(point)
 		this.setState(this.state)
 	}
 
 	removePointIfClicked([x, y], point) {
-  		let r = this.refs.triangulator.options.pointRadius
+  		let r = this.state.mesh.pointRadius
 		if (this.withinRadius([x, y], point), r) this.state.points.delete(point)
 	}
 

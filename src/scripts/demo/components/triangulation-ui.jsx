@@ -14,7 +14,10 @@ class TriangulationUI extends React.Component {
 		return (
 			<div className="section">
 				<div className="section-content">
-					<input type="color" defaultValue={this.props.mesh.color} onChange={this.onChange.bind(this, 'color')} />
+					<div>
+						<input type="color" defaultValue={this.props.mesh.color} onChange={this.onChange.bind(this, 'color')} /> 
+						&nbsp;mesh color
+					</div>
 					<div className="checkbox">
 				        <label>
 				          	<input type="checkbox" defaultChecked={this.props.mesh.showColor} onChange={this.onChange.bind(this, 'showColor')} /> color average 

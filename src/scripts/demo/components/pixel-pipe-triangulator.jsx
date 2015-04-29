@@ -34,7 +34,7 @@ class Triangulator extends PixelPipe {
     	if (this.props.points.size >= 3) {
     		let triangles
     		if (this.props.mesh.showColor || this.props.mesh.showMesh) triangles = this.triangulate()
-    		if (this.props.mesh.showColor) this.setData(ColorAverage.run(this.getData(), this.getAllPointsInTriangles(triangles, Array.from(this.props.points))))
+    		if (this.props.mesh.showColor) this.setData(ColorAverage.run(this.getData(), this.getAllPointsInTriangles(triangles, Array.from(this.props.points), this.props.mesh.bgColor)))
     		if (this.props.mesh.showMesh) this.renderMesh(triangles)
     	}
     	return template

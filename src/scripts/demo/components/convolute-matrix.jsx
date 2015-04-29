@@ -13,7 +13,7 @@ class ConvoluteMaxtrix extends React.Component {
 		return (
 			<div key={idx} className="col-xs-4">
 				<div className="filter-input">
-					<input onChange={this.onChange.bind(this, idx)} defaultValue={weight} type="number" step={weight % 1 === 0 ? 1 : 0.1} ref={'item' + idx}/>
+					<input onChange={this.onChange.bind(this, idx)} defaultValue={weight} type="number" step={weight % 1 === 0 ? 1 : 0.1} ref={`item${idx}`}/>
 				</div>
 			</div>
 		)
