@@ -60,7 +60,7 @@ class PixelPipeDemo extends React.Component {
 
 	onCanvasMouseDown(e) {
 		let canvasParent = this.refs.canvasWrap.getDOMNode()
-		let point = [e.pageX - canvasParent.offsetLeft, e.pageY + canvasParent.offsetTop].map(coordinate => coordinate)
+		let point = [e.pageX - canvasParent.offsetLeft, e.pageY + canvasParent.offsetTop]
 		if (e.shiftKey) this.state.points.forEach(this.removePointIfClicked.bind(this, point))
 		else this.state.points.add(point)
 		this.setState(this.state)
